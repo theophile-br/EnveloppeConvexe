@@ -14,10 +14,6 @@ public:
     Sommet* premier;
     Sommet* ajouteSommet(const Point &p, Sommet *s);
     void supprimeSommet(Sommet *s);
-    void trace(SDL_Renderer* renderer);
-private:
-    void segment(const Point &a, const Point &b, SDL_Renderer* renderer);
 };
-
 
 #endif //ENVELOPPE_CONVEXE_POLYGONE_H
