@@ -45,6 +45,9 @@ int main() {
     // DRAW POINTS
     trace(points,renderer);
 
+    // RENDER
+    SDL_RenderPresent(renderer);
+
     // EVENT_LOOP
     eventLoop();
 
@@ -65,11 +68,11 @@ void eventLoop(){
                     break;
                 case SDL_KEYDOWN:
                     close = 1;
-                    switch (event.key.keysym.scancode) {
+                    /*switch (event.key.keysym.scancode) {
                         case SDL_SCANCODE_ESCAPE:
                             close = 1;
                             break;
-                    };
+                    };*/
                     break;
             };
         };
@@ -90,7 +93,6 @@ void trace(const vector<Point> &points, SDL_Renderer *renderer) {
         SDL_RenderDrawRect(renderer,&rect);
         SDL_RenderFillRect(renderer,&rect);
     }
-    SDL_RenderPresent(renderer);
 }
 
 
@@ -106,7 +108,6 @@ void trace(const Polygone &p, SDL_Renderer* renderer) {
         segment(currentSommet->coord, currentSommet->next->coord, renderer);
         currentSommet = currentSommet->next;
     }while(currentSommet != p.premier);
-    SDL_RenderPresent(renderer);
 }
 
 /**
