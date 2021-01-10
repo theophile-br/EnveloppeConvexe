@@ -10,6 +10,7 @@ void eventLoop();
 void trace(const Polygone &p, SDL_Renderer *renderer);
 void trace(const vector<Point> &points, SDL_Renderer *renderer);
 void segment(const Point &a, const Point &b, SDL_Renderer *renderer);
+void enveloppe(const vector<Point> &T, Polygone &P);
 
 int main() {
     // SDL_INIT
@@ -29,12 +30,12 @@ int main() {
             {10, 50},
             {35, 110},
             {43, 70},
-            {200, 75},
-            {120, 10},
-            {135, 50},
-            {123, 95},
-            {145, 80},
             {100, 130},
+            {120, 10},
+            {123, 95},
+            {135, 50},
+            {145, 80},
+            {200, 75},
     };
 
     // POLYGONE_CREATE
@@ -42,12 +43,13 @@ int main() {
     Sommet *currentSommet = polygone.ajouteSommet(points[0], nullptr);
     currentSommet = polygone.ajouteSommet(points[1], currentSommet);
     polygone.ajouteSommet(points[2], currentSommet);
+    enveloppe(points,polygone);
 
     // POLYGONE_DRAW
     SDL_SetRenderDrawColor(renderer, 88, 61, 114, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
     //trace(polygone, renderer);
-    cout << points[2].aGauche(points[1], points[0]);
+    cout << points[2].aGauche(points[6], points[7]);
 
     // DRAW POINTS
     trace(points,renderer);
@@ -124,4 +126,10 @@ void trace(const Polygone &p, SDL_Renderer* renderer) {
  */
 void segment(const Point &a, const Point &b, SDL_Renderer* renderer) {
     SDL_RenderDrawLine(renderer, a.x, a.y, b.x, b.y);
+}
+
+void enveloppe(const vector<Point> &T, Polygone &P) {
+    for(const Point &p: T) {
+        cout << p.x << endl;
+    }
 }
