@@ -45,7 +45,7 @@ int main() {
     // POLYGONE_DRAW
     SDL_SetRenderDrawColor(renderer, 88, 61, 114, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
-    //trace(polygone, renderer);
+    trace(polygone, renderer);
 
     // DRAW POINTS
     trace(points,renderer);
@@ -125,7 +125,8 @@ void segment(const Point &a, const Point &b, SDL_Renderer* renderer) {
 }
 
 void enveloppe(const vector<Point> &T, Polygone &P) {
-    for(const Point &p: T) {
-        cout << p.x << endl;
+    Sommet* currentSommet = nullptr;
+    for(const Point &point: T) {
+        currentSommet = P.ajouteSommet(point,currentSommet);
     }
 }
