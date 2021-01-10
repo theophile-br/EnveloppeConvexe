@@ -40,16 +40,12 @@ int main() {
 
     // POLYGONE_CREATE
     Polygone polygone = Polygone();
-    Sommet *currentSommet = polygone.ajouteSommet(points[0], nullptr);
-    currentSommet = polygone.ajouteSommet(points[1], currentSommet);
-    polygone.ajouteSommet(points[2], currentSommet);
     enveloppe(points,polygone);
 
     // POLYGONE_DRAW
     SDL_SetRenderDrawColor(renderer, 88, 61, 114, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
     //trace(polygone, renderer);
-    cout << points[2].aGauche(points[6], points[7]);
 
     // DRAW POINTS
     trace(points,renderer);
