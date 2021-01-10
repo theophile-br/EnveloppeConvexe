@@ -26,9 +26,15 @@ int main() {
 
     // INIT POINT
     vector<Point> points = {
-            {10, 10},
-            {150, 150},
-            {10, 150}
+            {10, 50},
+            {35, 110},
+            {43, 70},
+            {200, 75},
+            {120, 10},
+            {135, 50},
+            {123, 95},
+            {145, 80},
+            {100, 130},
     };
 
     // POLYGONE_CREATE
@@ -40,7 +46,8 @@ int main() {
     // POLYGONE_DRAW
     SDL_SetRenderDrawColor(renderer, 88, 61, 114, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
-    trace(polygone, renderer);
+    //trace(polygone, renderer);
+    cout << points[2].aGauche(points[1], points[0]);
 
     // DRAW POINTS
     trace(points,renderer);
