@@ -10,7 +10,7 @@ class Point {
 public:
     int x, y;
     Point(int x, int y);
-    int aGauche(const Point &a, const Point &b);
+    int aGauche(const Point &a, const Point &b) const;
 };
 
 

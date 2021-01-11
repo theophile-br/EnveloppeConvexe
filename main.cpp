@@ -10,7 +10,7 @@ void eventLoop();
 void trace(const Polygone &p, SDL_Renderer *renderer);
 void trace(const vector<Point> &points, SDL_Renderer *renderer);
 void segment(const Point &a, const Point &b, SDL_Renderer *renderer);
-void enveloppe(const vector<Point> &T, Polygone &P);
+void enveloppe(const vector<Point> &points, Polygone &P);
 
 int main() {
     // SDL_INIT
@@ -124,9 +124,30 @@ void segment(const Point &a, const Point &b, SDL_Renderer* renderer) {
     SDL_RenderDrawLine(renderer, a.x, a.y, b.x, b.y);
 }
 
-void enveloppe(const vector<Point> &T, Polygone &P) {
+void enveloppe(const vector<Point> &points, Polygone &P) {
     Sommet* currentSommet = nullptr;
-    for(const Point &point: T) {
-        currentSommet = P.ajouteSommet(point,currentSommet);
+    int numberOfPoints = points.size();
+    for(int i = 0; i < numberOfPoints; i++) {
+        if( i < 3) {
+            currentSommet = P.ajouteSommet(points[i],currentSommet);
+        } else {
+            Sommet* beginSommet = currentSommet;
+            Sommet* endSommet = currentSommet;
+            while(points[i].aGauche(beginSommet->coord,beginSommet->prev->coord)) {
+                beginSommet = beginSommet->prev;
+            }
+
+            while(points[i].aGauche(endSommet->coord,endSommet->prev->coord)) {
+                endSommet = endSommet->next;
+            }
+
+            if(beginSommet != endSommet) {
+                P.supprimeSommet(beginSommet->next);
+                P.supprimeSommet(endSommet->prev);
+            } else {
+                P.supprimeSommet(beginSommet->next);
+            }
+            currentSommet = P.ajouteSommet(points[i],beginSommet);
+        }
     }
 }
