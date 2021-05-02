@@ -7,13 +7,17 @@
 #include "Sommet.h"
 #include "Point.h"
 #include <SDL.h>
+#include <vector>
 
 class Polygone {
 public:
     Polygone();
-    Sommet* premier;
+    Sommet* sommet;
     Sommet* ajouteSommet(const Point &p, Sommet *s);
     void supprimeSommet(Sommet *s);
 };
+
+void enveloppe(const std::vector<Point> &points, Polygone &P);
+
 
 #endif //ENVELOPPE_CONVEXE_POLYGONE_H

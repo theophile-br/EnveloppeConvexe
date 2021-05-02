@@ -14,5 +14,5 @@ ELSE()
 ENDIF()
 
 INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS})
-add_executable(${PROJECT_NAME} main.cpp Point.cpp Point.h Sommet.cpp Sommet.h Polygone.cpp Polygone.h)
+add_executable(${PROJECT_NAME} main.cpp Point.cpp Point.h Sommet.h Polygone.cpp Polygone.h)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})

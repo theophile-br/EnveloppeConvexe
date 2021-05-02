@@ -10,8 +10,12 @@ int Point::aGauche(const Point &a, const Point &b) const {
     if(d == 0){
         return 0;
     }else if(d < 0){
-        return -1;
+        return 0;
     } else if (d > 0){
         return 1;
     }
+}
+
+bool Point::operator< (const Point &other) const {
+    return x < other.x;
 }

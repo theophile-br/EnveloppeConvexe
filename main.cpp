@@ -10,7 +10,6 @@ void eventLoop();
 void trace(const Polygone &p, SDL_Renderer *renderer);
 void trace(const vector<Point> &points, SDL_Renderer *renderer);
 void segment(const Point &a, const Point &b, SDL_Renderer *renderer);
-void enveloppe(const vector<Point> &points, Polygone &P);
 
 int main() {
     // SDL_INIT
@@ -26,7 +25,7 @@ int main() {
     }
 
     // INIT POINT
-    vector<Point> points = {
+/*    vector<Point> points = {
             {10, 50},
             {35, 110},
             {43, 70},
@@ -36,6 +35,14 @@ int main() {
             {135, 50},
             {145, 80},
             {200, 75},
+    };*/
+
+    vector<Point> points = {
+            {10, 50},
+            {35, 110},
+            {100, 130},
+            {43, 70},
+
     };
 
     // POLYGONE_CREATE
@@ -107,12 +114,13 @@ void trace(const vector<Point> &points, SDL_Renderer *renderer) {
  */
 void trace(const Polygone &p, SDL_Renderer* renderer) {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    Sommet *currentSommet = p.premier;
+    Sommet *start = p.sommet;
+    Sommet *current = p.sommet->next;
 
     do{
-        segment(currentSommet->coord, currentSommet->next->coord, renderer);
-        currentSommet = currentSommet->next;
-    }while(currentSommet != p.premier);
+        segment(current->coord, current->next->coord, renderer);
+        current = current->next;
+    }while(start->next != current);
 }
 
 /**
@@ -124,30 +132,3 @@ void segment(const Point &a, const Point &b, SDL_Renderer* renderer) {
     SDL_RenderDrawLine(renderer, a.x, a.y, b.x, b.y);
 }
 
-void enveloppe(const vector<Point> &points, Polygone &P) {
-    Sommet* currentSommet = nullptr;
-    int numberOfPoints = points.size();
-    for(int i = 0; i < numberOfPoints; i++) {
-        if( i < 3) {
-            currentSommet = P.ajouteSommet(points[i],currentSommet);
-        } else {
-            Sommet* beginSommet = currentSommet;
-            Sommet* endSommet = currentSommet;
-            while(points[i].aGauche(beginSommet->coord,beginSommet->prev->coord)) {
-                beginSommet = beginSommet->prev;
-            }
-
-            while(points[i].aGauche(endSommet->coord,endSommet->prev->coord)) {
-                endSommet = endSommet->next;
-            }
-
-            if(beginSommet != endSommet) {
-                P.supprimeSommet(beginSommet->next);
-                P.supprimeSommet(endSommet->prev);
-            } else {
-                P.supprimeSommet(beginSommet->next);
-            }
-            currentSommet = P.ajouteSommet(points[i],beginSommet);
-        }
-    }
-}
