@@ -15,7 +15,3 @@ int Point::aGauche(const Point &a, const Point &b) const {
         return 1;
     }
 }
-
-bool Point::operator< (const Point &other) const {
-    return x < other.x;
-}

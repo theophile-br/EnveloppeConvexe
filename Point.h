@@ -11,7 +11,6 @@ public:
     int x, y;
     Point(int x, int y);
     int aGauche(const Point &a, const Point &b) const;
-    bool operator< (const Point &other) const;
 };
 
 

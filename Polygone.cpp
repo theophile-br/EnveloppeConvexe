@@ -28,15 +28,14 @@ void Polygone::supprimeSommet(Sommet *s) {
     delete s;
 }
 
-void enveloppe(const std::vector<Point> &points, Polygone &P) {
+void enveloppe(std::vector<Point> &points, Polygone &P) {
     Sommet* currentSommet = nullptr;
     int numberOfPoints = points.size();
 
-    // SORT POINT BY X CROISSANT
-    std::sort(points.begin(), points.end(),[](const Point* a, const Point* b) {
-        return a->x < b->x;
+    // SORTING POINTS BY X INCREASE
+    std::sort(points.begin(), points.end(),[](Point a, Point b) {
+        return a.x < b.x;
     });
-
 
     // ADD FIRST 3 POINTS To FORM A TRIANGLE
     currentSommet = P.ajouteSommet(points[0],currentSommet);

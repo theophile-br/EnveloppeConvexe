@@ -25,24 +25,16 @@ int main() {
     }
 
     // INIT POINT
-/*    vector<Point> points = {
-            {10, 50},
+     vector<Point> points = {
             {35, 110},
             {43, 70},
             {100, 130},
+            {10, 50},
             {120, 10},
             {123, 95},
             {135, 50},
             {145, 80},
             {200, 75},
-    };*/
-
-    vector<Point> points = {
-            {10, 50},
-            {35, 110},
-            {100, 130},
-            {43, 70},
-
     };
 
     // POLYGONE_CREATE
