@@ -28,7 +28,7 @@ void Polygone::supprimeSommet(Sommet *s) {
     delete s;
 }
 
-void enveloppe(std::vector<Point> &points, Polygone &P) {
+void Create_Enveloppe_Convexe(std::vector<Point> &points, Polygone &P) {
     Sommet* currentSommet = nullptr;
     int numberOfPoints = points.size();
 

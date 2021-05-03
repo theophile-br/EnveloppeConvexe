@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Polygone.h"
 #include "Point.h"
 #include <SDL.h>
@@ -39,7 +38,7 @@ int main() {
 
     // POLYGONE_CREATE
     Polygone polygone = Polygone();
-    enveloppe(points,polygone);
+    Create_Enveloppe_Convexe(points,polygone);
 
     // POLYGONE_DRAW
     SDL_SetRenderDrawColor(renderer, 88, 61, 114, SDL_ALPHA_OPAQUE);

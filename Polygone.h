@@ -17,7 +17,7 @@ public:
     void supprimeSommet(Sommet *s);
 };
 
-void enveloppe(std::vector<Point> &points, Polygone &P);
+void Create_Enveloppe_Convexe(std::vector<Point> &points, Polygone &P);
 
 
 #endif //ENVELOPPE_CONVEXE_POLYGONE_H
